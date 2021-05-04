@@ -164,7 +164,8 @@ header div {
   margin-top: 15%;
   text-align: center;
   color: rgb(202, 202, 202);
-  font-size: 400%;
+  font-size: 360%;
+  text-transform: uppercase;
 }
 
 /* Brows-Movs Section */
