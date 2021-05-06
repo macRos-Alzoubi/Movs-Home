@@ -12,10 +12,7 @@ body {
   font-weight: 300;
   font-size: 20px;
   scroll-behavior: smooth;
-<<<<<<< HEAD
   position: relative;
-=======
->>>>>>> 3f74d4f3fef5beed0ef4fdcd1345ddd9442659b2
 }
 
 /* ----Utilities----- */
@@ -291,7 +288,6 @@ footer {
   z-index: 9999;
 }
 
-<<<<<<< HEAD
 .mov-info__close {
   position: absolute;
   top: 20px;
@@ -303,15 +299,7 @@ footer {
   display: block;
   width: 100%;
   height: 100%;
-=======
-.mov-info::after {
-  content: "\00d7";
-  display: block;
-  position: absolute;
-  top: 20px;
-  right: 20px;
->>>>>>> 3f74d4f3fef5beed0ef4fdcd1345ddd9442659b2
-  color: #fff;
+  color: #f7a440;
   font-size: 160%;
   cursor: pointer;
 }
