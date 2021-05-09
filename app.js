@@ -21,6 +21,26 @@ let Nobody = `Nobody is a 2021 American action thriller film directed by Ilya Na
 let Braveheart = `Braveheart is a 1995 American epic historical fiction war film directed and co-produced by Mel Gibson, who portrays William Wallace, a late-13th-century Scottish warrior. The film depicts the life of Wallace leading the Scots in the First War of Scottish Independence against King Edward I of England. The film also stars Sophie Marceau, Patrick McGoohan and Catherine McCormack. The story is inspired by Blind Harry's 15th century epic poem The Actes and Deidis of the Illustre and Vallyeant Campioun Schir William Wallace and was adapted for the screen by Randall Wallace.`
 
 
+let setAttribute = function(nodeObject, attribute, attributeValue){
+    nodeObject.setAttribute(attribute, attributeValue);
+}
+
+let addClass = function(nodeObject, className){
+    nodeObject.classList.add(className);
+}
+
+let appendChild = function(parentNodeObject, childObject){
+    parentNodeObject.appendChild(childObject);
+}
+
+
+let setStarRating = function(starImgObject){
+    //Adding class to the star object
+    addClass(starImgObject, 'rate-star');
+    //Setting the 'src' attribute for the star object
+    setAttribute(starImgObject, 'src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/512px-Star_icon_stylized.svg.png');
+}
+
 //  Geting element from the DOM
 let movCard = document.querySelectorAll('.mov-card'),
  movInfo = document.querySelector('.mov-info'),
@@ -30,13 +50,12 @@ let movCard = document.querySelectorAll('.mov-card'),
  movInfoText = document.createElement('p'),
  starsContainer = document.createElement('div');
 
-// Appending element inside of the parent element container
-movInfoContainer.appendChild(movInfoImage);
-movInfoContainer.appendChild(movInfoText);
-movInfo.appendChild(movInfoContainer);
-movInfo.appendChild(movInfoClose);
-movInfo.appendChild(starsContainer);
-
+ // Appending element inside of the parent element container
+appendChild(movInfoContainer, movInfoImage);
+appendChild(movInfoContainer, movInfoText);
+appendChild(movInfo, movInfoContainer);
+appendChild(movInfo, movInfoClose);
+appendChild(movInfo, starsContainer);
 
 // adding eventListener for each moive card
 movCard.forEach(card =>{
@@ -51,28 +70,30 @@ movCard.forEach(card =>{
             targetElement = e.target.parentElement.firstElementChild;
 
         // Seting the src attrebute to the new img tag
-         movInfoImage.setAttribute('src', targetElement.getAttribute('src'));
-
-        // Attaching styling classes to elements
-        movInfo.classList.add('displayed');
-        movInfoContainer.classList.add('movInfocontainer');
-        movInfoImage.classList.add('mov-info__img');
-        movInfoText.classList.add('mov-info__text');
-        starsContainer.classList.add('stars-container');
-        movInfoClose.classList.add('mov-info__close');
+        setAttribute(movInfoImage,'src', targetElement.getAttribute('src'));
         
+        // Attaching styling classes to elements
+        addClass(movInfo, 'displayed');
+        addClass(movInfoContainer, 'movInfocontainer');
+        addClass(movInfoImage, 'mov-info__img');
+        addClass(movInfoText, 'mov-info__text');
+        addClass(starsContainer, 'stars-container');
+        addClass(movInfoClose, 'mov-info__close');
+
         // prompt to the user how many star he/she rate the movie
         let movRateStars = prompt('How do you rate the movie by stars? (1 -5)');
         if( movRateStars > 5) movRateStars = 5;
         else if( movRateStars < 1) movRateStars = 1; 
 
         for(let i = 0; i < movRateStars; i++){
-            // create stars imgs
-            let rateStar = document.createElement('img');
-            rateStar.classList.add('rate-star');
-            rateStar.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/512px-Star_icon_stylized.svg.png');
-            starsContainer.appendChild(rateStar);
+            //Create stars imgs
+            let starRate = document.createElement('img');
+            //Seting starRate class name and src attribute
+            setStarRating(starRate);
+            //Adding star to the DOM
+            appendChild(starsContainer, starRate);
         }
+
 
         // Geting the movie title
         let movTitle = targetElement.nextElementSibling;
